@@ -1,0 +1,135 @@
+@import url('https://fonts.googleapis.com/css2?family=Carme&display=swap');
+
+* {
+    margin: 0;
+    font-family: "Carme", "sans-serif";
+    color: #333;
+}
+
+.navigation {
+    padding: 20px;
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    max-width: 80%;
+    margin: 0 auto;
+    border-bottom: 1px solid #a09a9a;
+    font-size: large;
+}
+
+.navigation h1 {
+    font-size: xx-large;
+    color: rgb(247, 99, 73);
+}
+
+.navigation .links {
+    margin-left: auto;
+}
+
+.navigation a {
+    margin-left: 16px;
+    text-decoration: none;
+    padding: 6px;
+}
+
+.navigation a:hover {
+    color: rgb(247, 99, 73);
+}
+
+.content {
+    max-width: 80%;
+    margin: 40px auto;
+    padding: 20px;
+}
+
+.home h2 {
+    margin-bottom: 8px;
+}
+
+.footer {
+    padding: 20px;
+    display: flex;
+    width: 80%;
+    justify-content: center;
+    flex-wrap: wrap;
+    margin: 0 auto;
+    border-top: 1px solid #a09a9a;
+}
+
+.footer div {
+    margin-left: 30px;
+    padding: 6px;
+}
+
+.profile-content {
+    padding: 20px;
+    display: flex;
+    width: 80%;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    margin: 0 auto;
+    font-size: large;
+}
+
+.profilepic img {
+    border-radius: 50%;
+    padding-right: 40px;
+}
+
+/* code from https://stackoverflow.com/questions/13204002/align-form-elements-in-css */
+form {
+    width: 80%;
+    margin: 0 auto;
+}
+
+label,
+input {
+    /* In order to define widths */
+    display: inline-block;
+}
+
+label {
+    width: 30%;
+    /* Positions the label text beside the input */
+    text-align: right;
+}
+
+label+input {
+    width: 30%;
+    /* Large margin-right to force the next element to the new-line
+             and margin-left to create a gutter between the label and input */
+    margin: 0 30% 0 4%;
+}
+
+
+/* Only the submit button is matched by this selector,
+         but to be sure you could use an id or class for that button */
+
+input+input {
+    float: right;
+}
+/* end of code from https://stackoverflow.com/questions/13204002/align-form-elements-in-css */
+
+.login h1{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding-bottom: 20px;
+}
+
+.register h1{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding-bottom: 20px;
+}
+
+.submit-container {
+    padding-top: 20px;
+    text-align: center;
+}
+
+.search {
+    margin-left: auto;
+}
