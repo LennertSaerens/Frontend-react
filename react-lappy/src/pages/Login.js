@@ -1,17 +1,43 @@
-import React from "react"
+import React, { useState } from "react"
+import axios from "axios";
+
+
 
 const Login = () => {
+    const [auth, setAuth] = useState(null)
+    const [username, setUserName] = useState();
+    const [password, setPassword] = useState();
+    const [id, setID]= useState(null);
+    const handleSubmit = (event) => {
+        event.preventDefault();
+        const header = {
+            'Content-Type': 'application/json',
+            // 'Access-Control-Allow-Origin': '*',
+          };
+        const requestOptions = {
+            method: 'POST',
+            headers: header,
+            body: JSON.stringify({ username: username, password: password })
+        };
+        const usersURL = "http://127.0.0.1:8000/api/users/?username="
+        const authorized = true
+        
+          fetch("http://127.0.0.1:8000/auth/", requestOptions).then ((res) => res.json()).then(data => {setAuth(data.token)}).catch(authorized = false)
+          if (authorized) {
+            fetch(usersURL.concat(username)).then ((res) => res.json()).then(data => {setID(data[0].id);})
+          }
+    }
     return (
         <div className="login">
             <h1>Login</h1>
-            <form action="#" method="post">
+            <form onSubmit={handleSubmit}>
                 <p>
                     <label for="uname">Username:</label>
-                    <input type="text" id="uname" name="uname" required></input>
+                    <input type="text" onChange={e => setUserName(e.target.value)} id="uname" name="uname" required></input>
                 </p>
                 <p>
                     <label for="password">Password:</label>
-                    <input type="password" id="password" name="password" required></input>
+                    <input type="password" onChange={e => setPassword(e.target.value)} id="password" name="password" required></input>
                 </p>
                 <div className="submit-container">
                     <input type="submit" value="Log in"></input>
