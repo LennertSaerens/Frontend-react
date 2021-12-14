@@ -2,6 +2,10 @@ import React from "react"
 import { Link } from "react-router-dom"
 import Searchbar from "./Searchbar"
 
+/**
+ * 
+ * @returns Code for the navbar at the top of the page. 
+ */
 const Navbar = () => {
     return (
         <nav className="navigation">

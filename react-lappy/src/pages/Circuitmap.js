@@ -3,7 +3,7 @@ import GoogleMapReact from "google-map-react"
 import Flag from "../components/Flag"
 import mapStyle from "../styles/GoogleMapStyle.json"
 
-const Circuitmap = ({ userLocation }) => {
+const Circuitmap = () => {
 
     // All circuits recieved from the DB. Used for showing them on the map
     const [circuits, setCircuits] = useState([
@@ -25,6 +25,8 @@ const Circuitmap = ({ userLocation }) => {
         coordinates: { lat: 50.436430, lng: 5.970263 }
     })
 
+    // Constant used for setting the center of the map. Coordinates of 
+    // Circuit De Spa-Francochamps aka the best circuit in the world.
     const center = {
         lat: 50.436430,
         lng: 5.970263,
@@ -32,6 +34,11 @@ const Circuitmap = ({ userLocation }) => {
 
     return (
         <div className="circuitMap-page">
+            {/* Link to page where user can add new circuits. */}
+            <div className="add-circuit-link">
+                <p>Add a circuit via <a href="/addcircuit">this</a> link.</p>
+            </div>
+            {/* div used to contain the google map. */}
             <div className="google-map" style={{ width: "80vw", height: "70vh" }}>
                 <GoogleMapReact
                     bootstrapURLKeys={{ key: "AIzaSyB30eXPqHYsFqyzdNe3vQQi_8ifaKO-vm0" }}
@@ -46,11 +53,13 @@ const Circuitmap = ({ userLocation }) => {
                     onChange={''}
                     onChildClick={''}
                 >
+                    {/* Map over all circuits and create a flag on the map for each circuit. */}
                     {circuits.map((circuit) => (
-                        <Flag lat={circuit.coordinates.lat} lng={circuit.coordinates.lng} circuit={circuit} setCurrentCircuit={setCurrentCircuit}/>
+                        <Flag lat={circuit.coordinates.lat} lng={circuit.coordinates.lng} circuit={circuit} setCurrentCircuit={setCurrentCircuit} />
                     ))}
                 </GoogleMapReact>
             </div>
+            {/* Circuit profile */}
             <div className="currentCircuit">
                 <h1>Selected Circuit:</h1>
                 <p>{currentCircuit.name}</p>

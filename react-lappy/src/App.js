@@ -7,6 +7,7 @@ import Profile from "./pages/Profile";
 import Footer from "./components/Footer";
 import { BrowserRouter, Route, Switch } from "react-router-dom"
 import React, { useState, useEffect } from "react";
+import AddCircuit from "./pages/AddCircuit";
 
 function App() {
   return (
@@ -29,6 +30,9 @@ function App() {
             </Route>
             <Route path="/circuitMap">
               <Circuitmap />
+            </Route>
+            <Route path="/addcircuit">
+              <AddCircuit />
             </Route>
           </Switch>
         </div>
