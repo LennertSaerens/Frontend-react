@@ -5,6 +5,7 @@ import mapStyle from "../styles/GoogleMapStyle.json"
 
 const Circuitmap = ({ userLocation }) => {
 
+    // All circuits recieved from the DB. Used for showing them on the map
     const [circuits, setCircuits] = useState([
         {
             id: 1,
@@ -16,6 +17,13 @@ const Circuitmap = ({ userLocation }) => {
             coordinates: { lat: 50.990359, lng: 5.257508 }
         }
     ])
+
+    // Circuit currently selected by the user, used to display circuit profile
+    const [currentCircuit, setCurrentCircuit] = useState({
+        id: 1,
+        name: "Spa-Francoshamps",
+        coordinates: { lat: 50.436430, lng: 5.970263 }
+    })
 
     const center = {
         lat: 50.436430,
@@ -39,12 +47,13 @@ const Circuitmap = ({ userLocation }) => {
                     onChildClick={''}
                 >
                     {circuits.map((circuit) => (
-                        <Flag lat={circuit.coordinates.lat} lng={circuit.coordinates.lng} name={circuit.name}/>
+                        <Flag lat={circuit.coordinates.lat} lng={circuit.coordinates.lng} circuit={circuit} setCurrentCircuit={setCurrentCircuit}/>
                     ))}
                 </GoogleMapReact>
             </div>
             <div className="currentCircuit">
-                <h1>Info huidig circuit hier</h1>
+                <h1>Selected Circuit:</h1>
+                <p>{currentCircuit.name}</p>
             </div>
         </div>
     )

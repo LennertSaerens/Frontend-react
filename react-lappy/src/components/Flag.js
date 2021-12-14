@@ -1,11 +1,11 @@
-import React from 'react'
+import React, {useEffect} from 'react'
 import checkeredFlag from "../images/checkeredFlag.png"
 import { flagStyle } from '../styles/flagstyle'
 
-const Flag = ({ name }) => {
+const Flag = ({ circuit, setCurrentCircuit }) => {
+
     return (
-        // code for the flag
-        <div className="flag" onClick={() => console.log(name)}> 
+        <div className="flag" onClick={() => setCurrentCircuit(circuit)}> 
             <img src={checkeredFlag} alt="Checkered Flag"  style={flagStyle} />
         </div>
     )
