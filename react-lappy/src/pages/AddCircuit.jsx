@@ -4,6 +4,15 @@ const AddCircuit = () => {
     return (
         <div className="add-circuit">
             <h1>Add circuit</h1>
+            <form action="#" method="post">
+                <p>
+                    <label for="name">Name:</label>
+                    <input type="text" id="name" name="name" required></input>
+                </p>
+                <div className="submit-container">
+                    <input type="submit" value="Add circuit"></input>
+                </div>
+            </form>
         </div>
     )
 }

@@ -11,7 +11,21 @@ const AddLaptime = () => {
                 </p>
                 <p>
                     <label for="laptime">Laptime:</label>
-                    <input type="text" id="laptime" name="laptime" required></input>
+                    <input
+                        type="text"
+                        id="laptime"
+                        name="laptime"
+                        pattern="[0-6]?[0-9]:[0-5][0-9]:[0-9][0-9][0-9]"
+                        required
+                    />
+                </p>
+                <p>
+                    <label htmlFor="condition">Condition:</label>
+                    <select name="condition" id="condition">
+                        <option value="S">Sunny</option>
+                        <option value="C">Cloudy</option>
+                        <option value="R">Rainy</option>
+                    </select>
                 </p>
                 <div className="submit-container">
                     <input type="submit" value="Add laptime"></input>

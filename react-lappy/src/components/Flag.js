@@ -8,9 +8,12 @@ import { flagStyle } from '../styles/flagstyle'
  *        the state of the Circuitmap page.
  * @returns Shows a flag on the map. This flag is clickable and makes the page display information about the circuit that was clicked.
  */
-const Flag = ({ circuit, setCurrentCircuit }) => {
+const Flag = ({ circuit, setCurrentCircuit, setLaptimes }) => {
     return (
-        <div className="flag" onClick={() => setCurrentCircuit(circuit)}> 
+        <div className="flag" onClick={() => {
+            setCurrentCircuit(circuit)
+            // TODO: setLaptimes(circuit)
+        }}> 
             <img src={checkeredFlag} alt="Checkered Flag"  style={flagStyle} />
         </div>
     )

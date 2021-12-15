@@ -119,7 +119,7 @@ const Circuitmap = () => {
                 return "Sunny"
         }
     }
-    
+
     const compareLaptimes = (l1, l2) => {
         if (l1.time < l2.time) {
             return -1
@@ -132,15 +132,21 @@ const Circuitmap = () => {
 
     return (
         <div className="circuitMap-page">
-            {/* Link to page where user can add new circuits. */}
-            <div className="links">
-                <div className="add-circuit-link">
-                    <p>Add a circuit via <a href="/addcircuit">this</a> link.</p>
-                </div>
-                <div className="add-laptime-link">
-                    <p>Add a laptime via <a href="/addlaptime">this</a> link.</p>
+            <div className="welcome-map">
+                <p>Welcome to the Circuit Map page. On this page you can:</p>
+                {/* Link to page where user can add new circuits. */}
+                <div className="links">
+                    <ul>
+                        <li><div className="add-circuit-link">
+                            <p>Add a circuit via <a href="/addcircuit">this</a> link.</p>
+                        </div></li>
+                        <li><div className="add-laptime-link">
+                            <p>Add a laptime via <a href="/addlaptime">this</a> link.</p>
+                        </div></li>
+                    </ul>
                 </div>
             </div>
+            Or browse the map below.
             {/* div used to contain the google map. */}
             <div className="google-map" style={{ width: "80vw", height: "70vh" }}>
                 <GoogleMapReact
@@ -170,23 +176,28 @@ const Circuitmap = () => {
             </div>
             {/* Circuit profile */}
             <div className="currentCircuit">
-                <h1>Selected Circuit:</h1>
-                <h2>{currentCircuit.name}</h2>
-                <h2>Top 10 laptimes for this circuit:</h2>
-                <table>
-                    <tr>
-                        <th>User</th>
-                        <th>Laptime</th>
-                        <th>Conditions</th>
-                    </tr>
-                    {laptimes.sort(compareLaptimes).slice(0, 10).map((laptime) => (
-                        <tr>
-                            <td>{laptime.user}</td>
-                            <td>{laptime.time}</td>
-                            <td>{getWeather(laptime.weather)}</td>
-                        </tr>
-                    ))}
-                </table>
+                <h1>Selected Circuit: {currentCircuit.name}</h1>
+                <div className="current-circuit-content">
+                    <div className="top-laptimes">
+                        <h2>Top 10 laptimes for this circuit:</h2>
+                        <div className="table">
+                            <table>
+                                <tr>
+                                    <th>User</th>
+                                    <th>Laptime</th>
+                                    <th>Conditions</th>
+                                </tr>
+                                {laptimes.sort(compareLaptimes).slice(0, 10).map((laptime) => (
+                                    <tr>
+                                        <td>{laptime.user}</td>
+                                        <td>{laptime.time}</td>
+                                        <td>{getWeather(laptime.weather)}</td>
+                                    </tr>
+                                ))}
+                            </table>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     )

@@ -65,11 +65,15 @@
     padding: 20px;
     display: flex;
     width: 80%;
-    justify-content: center;
+    justify-content: space-around;
     align-items: center;
     flex-wrap: wrap;
     margin: 0 auto;
     font-size: large;
+}
+
+.profile-content th{
+    color: rgb(247, 99, 73);
 }
 
 .profilepic img {
@@ -84,7 +88,8 @@ form {
 }
 
 label,
-input {
+input,
+select {
     /* In order to define widths */
     display: inline-block;
 }
@@ -96,6 +101,13 @@ label {
 }
 
 label+input {
+    width: 30%;
+    /* Large margin-right to force the next element to the new-line
+             and margin-left to create a gutter between the label and input */
+    margin: 0 30% 0 4%;
+}
+
+select {
     width: 30%;
     /* Large margin-right to force the next element to the new-line
              and margin-left to create a gutter between the label and input */
@@ -133,3 +145,32 @@ input+input {
 .search {
     margin-left: auto;
 }
+
+.google-map {
+    margin-bottom: 20px;
+    margin-top: 20px;
+}
+
+.currentCircuit h1{
+    padding: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-top: 1px solid #a09a9a;
+}
+
+.current-circuit-content {
+    display: flex;
+    justify-content: space-around;
+}
+
+.table {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.table th{
+    color: rgb(247, 99, 73);
+}
+
