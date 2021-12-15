@@ -8,10 +8,12 @@ const Profile = ({loggedid}) => {
 
     const[profilePic, setProfilePic] = useState(profilepictest)
 
+    const[followers, setFollowers] = useState(0)
+
     var id = visitid.id
 
     const [user, setUser] = useState(
-         { id: 1, username: "default", first_name: "Lennert", last_name: "Saerens", date_joined: "24/09/2021", numfollowers: 69 }
+         { id: 1, username: "default", first_name: "Lennert", last_name: "Saerens", date_joined: "24/09/2021"}
     )
 
     const url = "http://127.0.0.1:8000/api/users/"
@@ -22,9 +24,12 @@ const Profile = ({loggedid}) => {
 
     const avatarurl = "http://127.0.0.1:8000/api/profiles/"
     
-    console.log(profilePic)
     fetch(avatarurl.concat(user.userprofile)).then(res => res.json()).then(data => setProfilePic(data.avatar))
-    console.log(profilePic)
+
+    const followurl = "http://127.0.0.1:8000/api/follow/"
+
+    fetch(followurl.concat(`?user=${id}`)).then(res => res.json()).then(data => setFollowers(data.length))
+
 
 
     return (
@@ -36,7 +41,7 @@ const Profile = ({loggedid}) => {
                 <p>Username: {user.username}</p>
                 <p>Name: {user.first_name} {user.last_name}</p>
                 <p>Joined on: {user.date_joined}</p>
-                <p>Followers: {user.numfollowers}</p>
+                <p>Followers: {followers}</p>
             </div>
         </div>
     )
