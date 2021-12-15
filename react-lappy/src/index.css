@@ -85,6 +85,8 @@
 .profilepic img {
     border-radius: 50%;
     padding-right: 40px;
+    width: 80%;
+    height: 80%;
 }
 
 /* code from https://stackoverflow.com/questions/13204002/align-form-elements-in-css */
