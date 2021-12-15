@@ -14,7 +14,7 @@ const Login = () => {
                     <input type="password" id="password" name="password" required></input>
                 </p>
                 <div className="submit-container">
-                    <input type="submit" value="Log in"></input>
+                    <input type="submit" value="Log in" className="styledbutton"></input>
                 </div>
             </form>
             {/* Option to register in case the user doesnt have an account. */}

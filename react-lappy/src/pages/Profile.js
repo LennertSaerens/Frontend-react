@@ -48,37 +48,43 @@ const Profile = () => {
     }
 
     return (
-        <div className="profile-content">
-            <div className="profilepic">
-                <img src={profilepictest} alt="Profile picture" />
-            </div>
-            <div className="user-info">
-                <h2>Personal information</h2>
-                <p>Username: {user.username}</p>
-                <p>Name: {user.firstname} {user.lastname}</p>
-                <p>Joined on: {user.joined}</p>
-                <p>Followers: {user.numfollowers}</p>
-            </div>
-            <div className="user-laptimes">
-                <h2>Your laptimes</h2>
-                <div className="user-laptime-table">
-                    <table>
-                        <tr>
-                            <th>Laptime</th>
-                            <th>Circuit</th>
-                            <th>Conditions</th>
-                        </tr>
-                        {userLaptimes.map((laptime) => (
+        <>
+            <div className="profile-content">
+                <div className="profilepic">
+                    <img src={profilepictest} alt="Profile picture" />
+                </div>
+                <div className="user-info">
+                    <h2>Personal information</h2>
+                    <p>Username: {user.username}</p>
+                    <p>Name: {user.firstname} {user.lastname}</p>
+                    <p>Joined on: {user.joined}</p>
+                    <p>Followers: {user.numfollowers}</p>
+                </div>
+                <div className="user-laptimes">
+                    <h2>Your laptimes</h2>
+                    <div className="user-laptime-table">
+                        <table>
                             <tr>
-                                <td>{laptime.time}</td>
-                                <td>{laptime.circuit}</td>
-                                <td>{getWeather(laptime.weather)}</td>
+                                <th>Laptime</th>
+                                <th>Circuit</th>
+                                <th>Conditions</th>
                             </tr>
-                        ))}
-                    </table>
+                            {userLaptimes.map((laptime) => (
+                                <tr>
+                                    <td>{laptime.time}</td>
+                                    <td>{laptime.circuit}</td>
+                                    <td>{getWeather(laptime.weather)}</td>
+                                </tr>
+                            ))}
+                        </table>
+                    </div>
                 </div>
             </div>
-        </div>
+            <div className="add">
+                <a href="/addcircuit" class="styledbutton">Add Circuit</a>
+                <a href="/addlaptime" class="styledbutton">Add Laptime</a>
+            </div>
+        </>
     )
 }
 

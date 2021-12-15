@@ -10,7 +10,7 @@ const AddCircuit = () => {
                     <input type="text" id="name" name="name" required></input>
                 </p>
                 <div className="submit-container">
-                    <input type="submit" value="Add circuit"></input>
+                    <input type="submit" value="Add circuit" className="styledbutton"></input>
                 </div>
             </form>
         </div>

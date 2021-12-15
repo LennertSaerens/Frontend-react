@@ -30,7 +30,7 @@ const Register = () => {
                     <input type="password" id="reppass" name="reppass" required></input>
                 </p>
                 <div className="submit-container">
-                    <input type="submit" value="Register"></input>
+                    <input type="submit" value="Register" className="styledbutton"></input>
                 </div>
             </form>
         </div>

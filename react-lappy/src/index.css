@@ -76,6 +76,12 @@
     color: rgb(247, 99, 73);
 }
 
+.profile-content h2{
+    display: flex;
+    text-align: center;
+    justify-content: center;
+}
+
 .profilepic img {
     border-radius: 50%;
     padding-right: 40px;
@@ -174,3 +180,39 @@ input+input {
     color: rgb(247, 99, 73);
 }
 
+td {
+    text-align: center;
+    vertical-align: middle;
+}
+
+/* style generated on https://www.bestcssbuttongenerator.com/ */
+.styledbutton {
+    box-shadow:inset 0px 1px 0px 0px #ffffff;
+	background:linear-gradient(to bottom, #ffffff 5%, #f6f6f6 100%);
+	background-color:#ffffff;
+	border-radius:6px;
+	border:1px solid #dcdcdc;
+	display:inline-block;
+	cursor:pointer;
+	font-size:15px;
+	font-weight:bold;
+	padding:6px 24px;
+	text-decoration:none;
+	text-shadow:0px 1px 0px #ffffff;
+    margin: 1%;
+}
+
+.styledbutton:hover {
+    background:linear-gradient(to bottom, #f6f6f6 5%, #ffffff 100%);
+	background-color:#f6f6f6;
+}
+
+.styledbutton:active {
+    position:relative;
+	top:1px;
+}
+
+.add {
+    display: flex;
+    justify-content: center;
+}

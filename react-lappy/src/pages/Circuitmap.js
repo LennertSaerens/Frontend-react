@@ -132,21 +132,6 @@ const Circuitmap = () => {
 
     return (
         <div className="circuitMap-page">
-            <div className="welcome-map">
-                <p>Welcome to the Circuit Map page. On this page you can:</p>
-                {/* Link to page where user can add new circuits. */}
-                <div className="links">
-                    <ul>
-                        <li><div className="add-circuit-link">
-                            <p>Add a circuit via <a href="/addcircuit">this</a> link.</p>
-                        </div></li>
-                        <li><div className="add-laptime-link">
-                            <p>Add a laptime via <a href="/addlaptime">this</a> link.</p>
-                        </div></li>
-                    </ul>
-                </div>
-            </div>
-            Or browse the map below.
             {/* div used to contain the google map. */}
             <div className="google-map" style={{ width: "80vw", height: "70vh" }}>
                 <GoogleMapReact

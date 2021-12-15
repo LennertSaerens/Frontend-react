@@ -28,7 +28,7 @@ const AddLaptime = () => {
                     </select>
                 </p>
                 <div className="submit-container">
-                    <input type="submit" value="Add laptime"></input>
+                    <input type="submit" value="Add laptime" className="styledbutton"></input>
                 </div>
             </form>
         </div>
