@@ -36,7 +36,7 @@ function App() {
               <Circuitmap />
             </Route>
             <Route path="/addcircuit">
-              <AddCircuit />
+              <AddCircuit auth={auth} id={id}/>
             </Route>
             <Route path="/addlaptime">
               <AddLaptime />

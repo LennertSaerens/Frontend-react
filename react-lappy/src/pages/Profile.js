@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react"
+import { Link } from "react-router-dom"
 import profilepictest from "../images/profilepictest.png"
 import { useParams } from "react-router-dom";
 
@@ -80,7 +81,7 @@ const Profile = ({loggedid}) => {
                     <h2>Personal information</h2>
                     <p>Username: {user.username}</p>
                     <p>Name: {user.first_name} {user.last_name}</p>
-                    <p>Joined on: {user.date_joined}</p>
+                    <p>Joined on: {user.date_joined.slice(0,10)}</p>
                     <p>Followers: {followers}</p>
                 </div>
                 <div className="user-laptimes">
@@ -104,8 +105,8 @@ const Profile = ({loggedid}) => {
                 </div>
             </div>
             <div className="add">
-                <a href="/addcircuit" class="styledbutton">Add Circuit</a>
-                <a href="/addlaptime" class="styledbutton">Add Laptime</a>
+                <Link to="/addcircuit" class="styledbutton">Add Circuit</Link>
+                <Link to="/addlaptime" class="styledbutton">Add Laptime</Link>
             </div>
         </>
     )

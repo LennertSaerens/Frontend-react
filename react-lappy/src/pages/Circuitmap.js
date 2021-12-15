@@ -7,16 +7,22 @@ const Circuitmap = () => {
 
     // All circuits recieved from the DB. Used for showing them on the map
     const [circuits, setCircuits] = useState([
-        {
-            id: 1,
-            name: "Spa-Francoshamps",
-            coordinates: { lat: 50.436430, lng: 5.970263 }
-        }, {
-            id: 2,
-            name: "Zolder",
-            coordinates: { lat: 50.990359, lng: 5.257508 }
-        }
+        // {
+        //     id: 1,
+        //     name: "Spa-Francoshamps",
+        //     latitude: 50.436430,
+        //     longitude: 5.970263
+        // }, {
+        //     id: 2,
+        //     name: "Zolder",
+        //     latitude: 50.990359,
+        //     longitude: 5.257508 
+        // }
     ])
+
+    const [fetched, setFetched] = useState(false)
+
+    if (!fetched) fetch("http://127.0.0.1:8000/api/circuits/").then((res) => res.json()).then(data => {setCircuits(data); setFetched(true); console.log(data)})
 
     // Circuit currently selected by the user, used to display circuit profile
     const [currentCircuit, setCurrentCircuit] = useState({
@@ -102,6 +108,7 @@ const Circuitmap = () => {
         ]
     )
 
+
     // Constant used for setting the center of the map. Coordinates of 
     // Circuit De Spa-Francochamps aka the best circuit in the world.
     const center = {
@@ -150,8 +157,8 @@ const Circuitmap = () => {
                     {/* Map over all circuits and create a flag on the map for each circuit. */}
                     {circuits.map((circuit) => (
                         <Flag
-                            lat={circuit.coordinates.lat}
-                            lng={circuit.coordinates.lng}
+                            lat={circuit.latitude}
+                            lng={circuit.longitude}
                             circuit={circuit}
                             setCurrentCircuit={setCurrentCircuit}
                             setLaptimes={setLaptimes}
