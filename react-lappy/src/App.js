@@ -10,6 +10,8 @@ import React, { useState, useEffect } from "react";
 
 
 function App() {
+  const [auth, setAuth] = useState(null)
+  const [id, setID]= useState(null);
   return (
     <BrowserRouter>
       <div className="App">
@@ -19,14 +21,14 @@ function App() {
             <Route exact path="/">
               <Home />
             </Route>
-            <Route path="/login">
-              <Login />
+            <Route path="/login/:id">
+              <Login auth={auth} id={id} setAuth={setAuth} setID={setID}/>
             </Route>
             <Route path="/register">
-              <Register />
+              <Register auth={auth}/>
             </Route>
             <Route path="/profile">
-              <Profile />
+              <Profile id={id}/>
             </Route>
             <Route path="/circuitMap">
               <Circuitmap />

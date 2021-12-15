@@ -3,11 +3,9 @@ import axios from "axios";
 
 
 
-const Login = () => {
-    const [auth, setAuth] = useState(null)
+const Login = ({auth, id, setAuth, setID}) => {
     const [username, setUserName] = useState();
     const [password, setPassword] = useState();
-    const [id, setID]= useState(null);
     const handleSubmit = (event) => {
         event.preventDefault();
         const header = {
@@ -20,12 +18,15 @@ const Login = () => {
             body: JSON.stringify({ username: username, password: password })
         };
         const usersURL = "http://127.0.0.1:8000/api/users/?username="
-        const authorized = true
-        
-          fetch("http://127.0.0.1:8000/auth/", requestOptions).then ((res) => res.json()).then(data => {setAuth(data.token)}).catch(authorized = false)
-          if (authorized) {
-            fetch(usersURL.concat(username)).then ((res) => res.json()).then(data => {setID(data[0].id);})
-          }
+        var authorized = true
+        console.log("in process")
+        fetch("http://127.0.0.1:8000/auth/", requestOptions).then ((res) => res.json()).then(data => {setAuth(data.token); if (data.token) {
+            console.log("AUTHORIZED")
+          fetch(usersURL.concat(username)).then ((res) => res.json()).then(data => {setID(data[0].id);})
+        }}).catch(error => {console.log(error);})
+          
+          console.log(auth)
+          console.log(id)
     }
     return (
         <div className="login">
