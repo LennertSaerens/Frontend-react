@@ -5,6 +5,8 @@ const Register = () => {
     const [username, setUserName] = useState();
     const [password, setPassword] = useState();
     const [email, setEmail] = useState();
+    const [firstName, setFirstName] = useState();
+    const [lastName, setLastName] = useState();
     const handleSubmit = (event) => {
         event.preventDefault();
         const header = {
@@ -13,7 +15,7 @@ const Register = () => {
         const requestOptions = {
             method: 'POST',
             headers: header,
-            body: JSON.stringify({ username: username, password: password, email: email})
+            body: JSON.stringify({ username: username, password: password, email: email, first_name: firstName, last_name: lastName})
         };
         
         
@@ -25,11 +27,11 @@ const Register = () => {
             <form onSubmit={handleSubmit}>
                 <p>
                     <label htmlFor="fname">First name:</label>
-                    <input type="text" id="fname" name="fname" required></input>
+                    <input type="text" id="fname" name="fname" onChange={e => setFirstName(e.target.value)} required></input>
                 </p>
                 <p>
                     <label htmlFor="lname">Last name:</label>
-                    <input type="text" id="lname" name="lname" required></input>
+                    <input type="text" id="lname" name="lname" onChange={e => setLastName(e.target.value)} required></input>
                 </p>
                 <p>
                     <label htmlFor="email">E-mail:</label>
