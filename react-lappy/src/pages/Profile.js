@@ -1,7 +1,12 @@
 import React, { useState } from "react"
 import profilepictest from "../images/profilepictest.png"
+import { useParams } from "react-router-dom";
 
-const Profile = ({id}) => {
+const Profile = ({loggedid}) => {
+
+    const visitid = useParams()
+
+    var id = visitid.id
 
     const [user, setUser] = useState(
         
@@ -10,9 +15,9 @@ const Profile = ({id}) => {
 
     const url = "http://127.0.0.1:8000/api/users/"
 
-    const userData = useState()
+    if (id != null && user.username == "default") {fetch(url.concat(id)).then((res) => res.json()).then((data) => {setUser(data); console.log(data)})}
 
-    if (id != null && user.username == "default") {fetch(url.concat(id)).then((res) => res.json()).then((data) => {setUser(data);})}
+    
 
     return (
         <div className="profile-content">
@@ -22,7 +27,7 @@ const Profile = ({id}) => {
             <div className="user-info">
                 <p>Username: {user.username}</p>
                 <p>Name: {user.first_name} {user.last_name}</p>
-                <p>Joined on: {user.date_joined.substring(0,10)}</p>
+                <p>Joined on: {user.date_joined}</p>
                 <p>Followers: {user.numfollowers}</p>
             </div>
         </div>

@@ -15,20 +15,20 @@ function App() {
   return (
     <BrowserRouter>
       <div className="App">
-        <Navbar />
+        <Navbar id={id}/>
         <div className="content">
           <Switch>
             <Route exact path="/">
               <Home />
             </Route>
-            <Route path="/login/:id">
+            <Route path="/login">
               <Login auth={auth} id={id} setAuth={setAuth} setID={setID}/>
             </Route>
             <Route path="/register">
               <Register auth={auth}/>
             </Route>
-            <Route path="/profile">
-              <Profile id={id}/>
+            <Route path="/profile/:id">
+              <Profile loggedid={id}/>
             </Route>
             <Route path="/circuitMap">
               <Circuitmap />
