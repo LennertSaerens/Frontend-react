@@ -1,5 +1,9 @@
 import React from "react"
 
+/**
+ * 
+ * @returns Code for a simple search bar. Is a subcomponent of the navbar.
+ */
 const Searchbar = () => {
     return (
         <form action='#' method="get">

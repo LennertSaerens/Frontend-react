@@ -7,6 +7,8 @@ import Profile from "./pages/Profile";
 import Footer from "./components/Footer";
 import { BrowserRouter, Route, Switch } from "react-router-dom"
 import React, { useState, useEffect } from "react";
+import AddCircuit from "./pages/AddCircuit";
+import AddLaptime from "./pages/AddLaptime";
 
 
 function App() {
@@ -32,6 +34,12 @@ function App() {
             </Route>
             <Route path="/circuitMap">
               <Circuitmap />
+            </Route>
+            <Route path="/addcircuit">
+              <AddCircuit />
+            </Route>
+            <Route path="/addlaptime">
+              <AddLaptime />
             </Route>
           </Switch>
         </div>

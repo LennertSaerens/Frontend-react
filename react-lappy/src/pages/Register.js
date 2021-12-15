@@ -48,7 +48,7 @@ const Register = () => {
                     <input type="password" id="reppass" onChange={e => setPassword(e.target.value)} name="reppass" required></input>
                 </p>
                 <div className="submit-container">
-                    <input type="submit" value="Register"></input>
+                    <input type="submit" value="Register" className="styledbutton"></input>
                 </div>
             </form>
         </div>

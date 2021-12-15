@@ -40,7 +40,7 @@ const Login = ({auth, id, setAuth, setID}) => {
                     <input type="password" onChange={e => setPassword(e.target.value)} id="password" name="password" required></input>
                 </p>
                 <div className="submit-container">
-                    <input type="submit" value="Log in"></input>
+                    <input type="submit" value="Log in" className="styledbutton"></input>
                 </div>
             </form>
             {/* Option to register in case the user doesnt have an account. */}

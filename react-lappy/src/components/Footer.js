@@ -1,5 +1,9 @@
 import React from "react"
 
+/**
+ * 
+ * @returns Simple footer mockup for the bottom of the page.
+ */
 const Footer = () => {
     return (
         <div className="footer-container">
