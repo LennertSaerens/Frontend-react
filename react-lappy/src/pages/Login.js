@@ -17,7 +17,6 @@ const Login = ({auth, id, setAuth, setID}) => {
             body: JSON.stringify({ username: username, password: password })
         };
         const usersURL = "http://127.0.0.1:8000/api/users/?username="
-        var authorized = true
         console.log("in process")
         fetch("http://127.0.0.1:8000/auth/", requestOptions).then ((res) => res.json()).then(data => {setAuth(data.token); if (data.token) {
             console.log("AUTHORIZED")
