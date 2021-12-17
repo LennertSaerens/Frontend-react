@@ -1,5 +1,6 @@
 import React, { useState } from "react"
 import profilepictest from "../images/profilepictest.png"
+import { Link } from "react-router-dom"
 
 const Profile = () => {
 
@@ -7,7 +8,7 @@ const Profile = () => {
         { id: 1, username: "Snelle Lenny", firstname: "Lennert", lastname: "Saerens", joined: "24/09/2021", numfollowers: 69 }
     )
 
-    const [ownProfile, setOwnProfile] = useState(false)
+    const [ownProfile, setOwnProfile] = useState(true)
     const [following, setFollowing] = useState(false)
 
     const [userLaptimes, setUserLaptimes] = useState(
@@ -84,21 +85,20 @@ const Profile = () => {
                 </div>
             </div>
             <div className="buttons">
-                    {ownProfile
-                        ? <div className="add">
-                            <a href="/addcircuit" class="styledbutton">Add Circuit</a>
-                            <a href="/addlaptime" class="styledbutton">Add Laptime</a>
-                            <button>Choose Profile Picture</button>
+                {ownProfile
+                    ? <div className="add">
+                        <Link to="/addcircuit" class="styledbutton">Add Circuit</Link>
+                        <Link to="/addlaptime" class="styledbutton">Add Laptime</Link>
+                    </div>
+                    : following
+                        ? <div className="follow">
+                            <button className="styledbutton">Unfollow</button>
                         </div>
-                        : following
-                            ? <div className="follow">
-                                <button className="styledbutton">Unfollow</button>
-                            </div>
-                            : <div className="follow">
-                                <button className="styledbutton">Follow</button>
-                            </div>
-                    }
-                </div>
+                        : <div className="follow">
+                            <button className="styledbutton">Follow</button>
+                        </div>
+                }
+            </div>
         </>
     )
 }
