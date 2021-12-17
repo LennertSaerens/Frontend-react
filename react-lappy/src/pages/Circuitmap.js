@@ -28,7 +28,7 @@ const Circuitmap = ({setCircuit}) => {
     // Circuit currently selected by the user, used to display circuit profile
     const [currentCircuit, setCurrentCircuit] = useState({
         id: 1,
-        name: "Spa-Francoshamps",
+        name: "None Selected",
         coordinates: { lat: 50.436430, lng: 5.970263 }
     })
 
