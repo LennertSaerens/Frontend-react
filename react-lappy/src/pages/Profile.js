@@ -42,12 +42,14 @@ const Profile = ({loggedid, auth}) => {
     
     if (!fetchedLaps) fetch(`http://127.0.0.1:8000/api/laps/?user=${id}`).then(res => res.json()).then(data => {setUserLaptimes(data); setFetchedLaps(true)})
     
-    if (!fetchedFollow) fetch(followurl.concat(`?user=${id}&by=${loggedid}`)).then(res => res.json()).then(data => {setCurrentFollow(data); setFetchedFollow(true)})
+   // if (!fetchedFollow) fetch(followurl.concat(`?user=${id}&by=${loggedid}`)).then(res => res.json()).then(data => {setCurrentFollow(data); setFetchedFollow(true)})
     
     const [ownProfile, setOwnProfile] = useState(true)
 
-    if (id != loggedid) setOwnProfile(false) 
+    // if (id != loggedid) setOwnProfile(false) 
     const [following, setFollowing] = useState(false)
+
+    // useEffect(() => (currentFollow ? setFollowing(true) : setFollowing(false)), [currentFollow])
 
     function follow() {
         const header = {
