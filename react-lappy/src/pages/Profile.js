@@ -9,7 +9,7 @@ const Profile = ({loggedid}) => {
 
     const[profilePic, setProfilePic] = useState()
 
-    const[followers, setFollowers] = useState(0)
+    const[followers, setFollowers] = useState()
 
     var id = visitid.id
 
@@ -23,45 +23,33 @@ const Profile = ({loggedid}) => {
    //     console.log(data)
     })}
 
-    const avatarurl = "http://127.0.0.1:8000/api/profiles/"
-    
-    fetch(avatarurl.concat(user.userprofile)).then(res => res.json()).then(data => setProfilePic(data.avatar))
+    const [fetchedFollow, setFetchedFollow] = useState(false)
 
+    const [fetchedLaps, setFetchedLaps] = useState(false)
+    
     const followurl = "http://127.0.0.1:8000/api/follow/"
 
-    fetch(followurl.concat(`?user=${id}`)).then(res => res.json()).then(data => setFollowers(data.length))
+
+    const avatarurl = "http://127.0.0.1:8000/api/profiles/"
+
+    fetch(avatarurl.concat(user.userprofile)).then(res => res.json()).then(data => {setProfilePic(data.avatar)})
+
+    if (!fetchedFollow) fetch(followurl.concat(`?user=${id}`)).then(res => res.json()).then(data => {setFollowers(data.length); setFetchedFollow(true)})
+    
+    if (!fetchedLaps) fetch(`http://127.0.0.1:8000/api/laps/?user=${id}`).then(res => res.json()).then(data => {setUserLaptimes(data); setFetchedLaps(true)})
+    
+    
+
+    
     const [ownProfile, setOwnProfile] = useState(true)
     const [following, setFollowing] = useState(false)
 
     const [userLaptimes, setUserLaptimes] = useState(
         [
-            {
-                "id": 1,
-                "time": "01:25:36",
-                "circuit": 2,
-                "user": 30,
-                "weather": "R",
-                "uploaded_on": "2021-11-26T12:30:55.496862Z"
-            },
-            {
-                "id": 2,
-                "time": "01:12:13",
-                "circuit": 2,
-                "user": 30,
-                "weather": "S",
-                "uploaded_on": "2021-11-26T15:18:05.596702Z"
-            },
-            {
-                "id": 10,
-                "time": "05:04:00",
-                "circuit": 2,
-                "user": 23,
-                "weather": "R",
-                "uploaded_on": "2021-11-26T15:35:07.476001Z"
-            }
         ]
     )
 
+    
     const getWeather = (symbol) => {
         switch (symbol) {
             case "R":
