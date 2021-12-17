@@ -9,6 +9,7 @@ import { BrowserRouter, Route, Switch } from "react-router-dom"
 import React, { useState, useEffect } from "react";
 import AddCircuit from "./pages/AddCircuit";
 import AddLaptime from "./pages/AddLaptime";
+import ModifyCircuit from "./pages/ModifyCircuit";
 
 
 function App() {
@@ -40,6 +41,9 @@ function App() {
             </Route>
             <Route path="/addlaptime">
               <AddLaptime />
+            </Route>
+            <Route path="/modifycircuit">
+              <ModifyCircuit />
             </Route>
           </Switch>
         </div>

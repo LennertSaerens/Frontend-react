@@ -170,6 +170,7 @@ input+input {
 .current-circuit-content {
     display: flex;
     justify-content: space-around;
+    align-items: center;
 }
 
 .table {
@@ -215,6 +216,11 @@ td {
 }
 
 .add {
+    display: flex;
+    justify-content: center;
+}
+
+.follow {
     display: flex;
     justify-content: center;
 }

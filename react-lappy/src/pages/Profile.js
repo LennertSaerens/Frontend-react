@@ -30,6 +30,8 @@ const Profile = ({loggedid}) => {
     const followurl = "http://127.0.0.1:8000/api/follow/"
 
     fetch(followurl.concat(`?user=${id}`)).then(res => res.json()).then(data => setFollowers(data.length))
+    const [ownProfile, setOwnProfile] = useState(true)
+    const [following, setFollowing] = useState(false)
 
     const [userLaptimes, setUserLaptimes] = useState(
         [
@@ -85,7 +87,7 @@ const Profile = ({loggedid}) => {
                     <p>Followers: {followers}</p>
                 </div>
                 <div className="user-laptimes">
-                    <h2>Your laptimes</h2>
+                    <h2>Laptimes</h2>
                     <div className="user-laptime-table">
                         <table>
                             <tr>
@@ -104,9 +106,20 @@ const Profile = ({loggedid}) => {
                     </div>
                 </div>
             </div>
-            <div className="add">
-                <Link to="/addcircuit" class="styledbutton">Add Circuit</Link>
-                <Link to="/addlaptime" class="styledbutton">Add Laptime</Link>
+            <div className="buttons">
+                {ownProfile
+                    ? <div className="add">
+                        <Link to="/addcircuit" class="styledbutton">Add Circuit</Link>
+                        <Link to="/addlaptime" class="styledbutton">Add Laptime</Link>
+                    </div>
+                    : following
+                        ? <div className="follow">
+                            <button className="styledbutton">Unfollow</button>
+                        </div>
+                        : <div className="follow">
+                            <button className="styledbutton">Follow</button>
+                        </div>
+                }
             </div>
         </>
     )
