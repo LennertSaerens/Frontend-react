@@ -3,7 +3,7 @@ import { Link } from "react-router-dom"
 import profilepictest from "../images/profilepictest.png"
 import { useParams } from "react-router-dom";
 
-const Profile = ({loggedid}) => {
+const Profile = ({loggedid, auth}) => {
 
     const visitid = useParams()
 
@@ -23,9 +23,13 @@ const Profile = ({loggedid}) => {
    //     console.log(data)
     })}
 
-    const [fetchedFollow, setFetchedFollow] = useState(false)
+    const [fetchedFollowers, setFetchedFollowers] = useState(false)
 
     const [fetchedLaps, setFetchedLaps] = useState(false)
+
+    const [currentFollow, setCurrentFollow] = useState()
+
+    const [fetchedFollow, setFetchedFollow] = useState(false)
     
     const followurl = "http://127.0.0.1:8000/api/follow/"
 
@@ -34,15 +38,37 @@ const Profile = ({loggedid}) => {
 
     fetch(avatarurl.concat(user.userprofile)).then(res => res.json()).then(data => {setProfilePic(data.avatar)})
 
-    if (!fetchedFollow) fetch(followurl.concat(`?user=${id}`)).then(res => res.json()).then(data => {setFollowers(data.length); setFetchedFollow(true)})
+    if (!fetchedFollowers) fetch(followurl.concat(`?user=${id}`)).then(res => res.json()).then(data => {setFollowers(data.length); setFetchedFollowers(true)})
     
     if (!fetchedLaps) fetch(`http://127.0.0.1:8000/api/laps/?user=${id}`).then(res => res.json()).then(data => {setUserLaptimes(data); setFetchedLaps(true)})
     
-    
-
+    if (!fetchedFollow) fetch(followurl.concat(`?user=${id}&by=${loggedid}`)).then(res => res.json()).then(data => {setCurrentFollow(data); setFetchedFollow(true)})
     
     const [ownProfile, setOwnProfile] = useState(true)
+
+    if (id != loggedid) setOwnProfile(false) 
     const [following, setFollowing] = useState(false)
+
+    function follow() {
+        const header = {
+            'Content-Type': 'application/json',
+            'Authorization': `Token ${auth}`
+          };
+          const requestOptions = {
+            method: 'POST',
+            headers: header,
+            body: JSON.stringify({ user: loggedid, followed: visitid})
+        };
+        fetch("http://127.0.0.1:8000/api/follow/", requestOptions).then(res => res.json()).then(data => setCurrentFollow(data))
+    }
+
+    function unfollow(){
+        setCurrentFollow()
+    }
+
+    
+
+
 
     const [userLaptimes, setUserLaptimes] = useState(
         [
@@ -102,10 +128,10 @@ const Profile = ({loggedid}) => {
                     </div>
                     : following
                         ? <div className="follow">
-                            <button className="styledbutton">Unfollow</button>
+                            <button className="styledbutton" onClick={unfollow}>Unfollow</button>
                         </div>
                         : <div className="follow">
-                            <button className="styledbutton">Follow</button>
+                            <button className="styledbutton" onClick={follow}>Follow</button>
                         </div>
                 }
             </div>

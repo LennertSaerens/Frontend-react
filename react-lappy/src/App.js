@@ -32,7 +32,7 @@ function App() {
               <Register auth={auth}/>
             </Route>
             <Route path="/profile/:id">
-              <Profile loggedid={id}/>
+              <Profile loggedid={id} auth={auth}/>
             </Route>
             <Route path="/circuitMap">
               <Circuitmap setCircuit = {setCircuit}/>
