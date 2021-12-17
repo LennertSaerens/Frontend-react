@@ -2,6 +2,7 @@ import React, { useState } from "react"
 import GoogleMapReact from "google-map-react"
 import Flag from "../components/Flag"
 import mapStyle from "../styles/GoogleMapStyle.json"
+import { Link } from "react-router-dom"
 
 const Circuitmap = () => {
 
@@ -181,6 +182,9 @@ const Circuitmap = () => {
                                 ))}
                             </table>
                         </div>
+                    </div>
+                    <div className="edit-circuit">
+                        <Link to="/modifycircuit" class="styledbutton">Edit Circuit</Link>
                     </div>
                 </div>
             </div>
