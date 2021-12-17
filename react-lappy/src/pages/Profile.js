@@ -7,6 +7,9 @@ const Profile = () => {
         { id: 1, username: "Snelle Lenny", firstname: "Lennert", lastname: "Saerens", joined: "24/09/2021", numfollowers: 69 }
     )
 
+    const [ownProfile, setOwnProfile] = useState(false)
+    const [following, setFollowing] = useState(false)
+
     const [userLaptimes, setUserLaptimes] = useState(
         [
             {
@@ -61,7 +64,7 @@ const Profile = () => {
                     <p>Followers: {user.numfollowers}</p>
                 </div>
                 <div className="user-laptimes">
-                    <h2>Your laptimes</h2>
+                    <h2>Laptimes</h2>
                     <div className="user-laptime-table">
                         <table>
                             <tr>
@@ -80,10 +83,22 @@ const Profile = () => {
                     </div>
                 </div>
             </div>
-            <div className="add">
-                <a href="/addcircuit" class="styledbutton">Add Circuit</a>
-                <a href="/addlaptime" class="styledbutton">Add Laptime</a>
-            </div>
+            <div className="buttons">
+                    {ownProfile
+                        ? <div className="add">
+                            <a href="/addcircuit" class="styledbutton">Add Circuit</a>
+                            <a href="/addlaptime" class="styledbutton">Add Laptime</a>
+                            <button>Choose Profile Picture</button>
+                        </div>
+                        : following
+                            ? <div className="follow">
+                                <button className="styledbutton">Unfollow</button>
+                            </div>
+                            : <div className="follow">
+                                <button className="styledbutton">Follow</button>
+                            </div>
+                    }
+                </div>
         </>
     )
 }

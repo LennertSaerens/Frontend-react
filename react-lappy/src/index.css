@@ -218,3 +218,8 @@ td {
     display: flex;
     justify-content: center;
 }
+
+.follow {
+    display: flex;
+    justify-content: center;
+}
