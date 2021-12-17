@@ -7,7 +7,7 @@ const Profile = ({loggedid}) => {
 
     const visitid = useParams()
 
-    const[profilePic, setProfilePic] = useState(profilepictest)
+    const[profilePic, setProfilePic] = useState()
 
     const[followers, setFollowers] = useState(0)
 
