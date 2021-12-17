@@ -12,7 +12,7 @@ const Flag = ({ circuit, setCurrentCircuit, setLaptimes }) => {
     return (
         <div className="flag" onClick={() => {
             setCurrentCircuit(circuit)
-            // TODO: setLaptimes(circuit)
+            fetch(`http://127.0.0.1:8000/api/laps/?circuit=${circuit.id}`).then((res) => res.json()).then(data => setLaptimes(data))
         }}> 
             <img src={checkeredFlag} alt="Checkered Flag"  style={flagStyle} />
         </div>
