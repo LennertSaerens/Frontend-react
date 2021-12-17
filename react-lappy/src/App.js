@@ -40,7 +40,7 @@ function App() {
               <AddCircuit auth={auth} id={id}/>
             </Route>
             <Route path="/addlaptime">
-              <AddLaptime />
+              <AddLaptime auth={auth} id={id}/>
             </Route>
             <Route path="/modifycircuit">
               <ModifyCircuit />
