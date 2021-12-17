@@ -15,6 +15,7 @@ import ModifyCircuit from "./pages/ModifyCircuit";
 function App() {
   const [auth, setAuth] = useState(null)
   const [id, setID]= useState(null);
+  const[circuit, setCircuit] = useState()
   return (
     <BrowserRouter>
       <div className="App">
@@ -34,7 +35,7 @@ function App() {
               <Profile loggedid={id}/>
             </Route>
             <Route path="/circuitMap">
-              <Circuitmap />
+              <Circuitmap setCircuit = {setCircuit}/>
             </Route>
             <Route path="/addcircuit">
               <AddCircuit auth={auth} id={id}/>
@@ -43,7 +44,7 @@ function App() {
               <AddLaptime auth={auth} id={id}/>
             </Route>
             <Route path="/modifycircuit">
-              <ModifyCircuit />
+              <ModifyCircuit circuit={circuit} auth={auth}/>
             </Route>
           </Switch>
         </div>

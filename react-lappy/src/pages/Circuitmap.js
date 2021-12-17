@@ -4,7 +4,7 @@ import Flag from "../components/Flag"
 import mapStyle from "../styles/GoogleMapStyle.json"
 import { Link } from "react-router-dom"
 
-const Circuitmap = () => {
+const Circuitmap = ({setCircuit}) => {
 
     // All circuits recieved from the DB. Used for showing them on the map
     const [circuits, setCircuits] = useState([
@@ -91,6 +91,7 @@ const Circuitmap = () => {
                             circuit={circuit}
                             setCurrentCircuit={setCurrentCircuit}
                             setLaptimes={setLaptimes}
+                            setEditCircuit={setCircuit}
                         />
                     ))}
                 </GoogleMapReact>
