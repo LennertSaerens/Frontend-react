@@ -5,7 +5,7 @@ import mapStyle from "../styles/GoogleMapStyle.json"
 import { Link } from "react-router-dom"
 import "../styles/circuitmap.css"
 
-const Circuitmap = ({getWeather, compareLaptimes}) => {
+const Circuitmap = ({ getWeather, compareLaptimes }) => {
 
     // All circuits recieved from the DB. Used for showing them on the map
     const [circuits, setCircuits] = useState([
@@ -96,6 +96,11 @@ const Circuitmap = ({getWeather, compareLaptimes}) => {
             <div className="currentCircuit">
                 <h1>Selected Circuit: {currentCircuit.name}</h1>
                 <div className="current-circuit-content">
+                    <div className="wiki">
+                        <h3>Title</h3>
+                        <p>Summary</p>
+                        <a href="placeholder">placeholder</a>
+                    </div>
                     <div className="top-laptimes">
                         <h2>Top 10 laptimes for this circuit:</h2>
                         <div className="table">
@@ -108,7 +113,9 @@ const Circuitmap = ({getWeather, compareLaptimes}) => {
                                 {laptimes.sort(compareLaptimes).slice(0, 10).map((laptime) => (
                                     <tr>
                                         <td>{laptime.user}</td>
-                                        <td>{laptime.time}</td>
+                                        <td>
+                                            <time>{laptime.time}</time>
+                                        </td>
                                         <td>{getWeather(laptime.weather)}</td>
                                     </tr>
                                 ))}

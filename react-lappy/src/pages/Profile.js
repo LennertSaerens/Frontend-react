@@ -65,7 +65,9 @@ const Profile = ({getWeather}) => {
                             </tr>
                             {userLaptimes.map((laptime) => (
                                 <tr>
-                                    <td>{laptime.time}</td>
+                                    <td>
+                                        <time>{laptime.time}</time>
+                                    </td>
                                     <td>{laptime.circuit}</td>
                                     <td>{getWeather(laptime.weather)}</td>
                                 </tr>

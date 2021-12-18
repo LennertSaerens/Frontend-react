@@ -7,7 +7,8 @@ import "../styles/footer.css"
  */
 const Footer = () => {
     return (
-        <div className="footer-container">
+        <footer>
+            <div className="footer-container">
             <div className="footer">
                 <div className="copyright">
                     <h3>lappy.gp</h3>
@@ -31,6 +32,7 @@ const Footer = () => {
                 </div>
             </div>
         </div>
+        </footer>
     )
 }
 
