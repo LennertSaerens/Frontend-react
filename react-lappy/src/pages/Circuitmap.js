@@ -51,54 +51,6 @@ const Circuitmap = () => {
                 "user": 23,
                 "weather": "R",
                 "uploaded_on": "2021-11-26T15:35:07.476001Z"
-            },
-            {
-                "id": 11,
-                "time": "05:04:00",
-                "circuit": 2,
-                "user": 23,
-                "weather": "R",
-                "uploaded_on": "2021-11-26T15:36:04.339638Z"
-            },
-            {
-                "id": 12,
-                "time": "05:04:00",
-                "circuit": 2,
-                "user": 23,
-                "weather": "R",
-                "uploaded_on": "2021-11-26T15:36:35.179383Z"
-            },
-            {
-                "id": 13,
-                "time": "05:04:00",
-                "circuit": 2,
-                "user": 23,
-                "weather": "R",
-                "uploaded_on": "2021-11-26T15:37:01.778900Z"
-            },
-            {
-                "id": 14,
-                "time": "05:04:00",
-                "circuit": 2,
-                "user": 23,
-                "weather": "R",
-                "uploaded_on": "2021-11-26T15:41:24.326584Z"
-            },
-            {
-                "id": 15,
-                "time": "05:04:00",
-                "circuit": 2,
-                "user": 23,
-                "weather": "R",
-                "uploaded_on": "2021-11-26T15:43:14.085048Z"
-            },
-            {
-                "id": 16,
-                "time": "05:04:00",
-                "circuit": 2,
-                "user": 23,
-                "weather": "R",
-                "uploaded_on": "2021-11-26T15:44:29.546047Z"
             }
         ]
     )
