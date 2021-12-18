@@ -1,5 +1,6 @@
-
 import React, { useState } from "react"
+
+import { useHistory } from "react-router-dom";
 
 const Register = () => {
     const [username, setUserName] = useState();
@@ -7,6 +8,8 @@ const Register = () => {
     const [email, setEmail] = useState();
     const [firstName, setFirstName] = useState();
     const [lastName, setLastName] = useState();
+    let History = useHistory();
+
     const handleSubmit = (event) => {
         event.preventDefault();
         const header = {
@@ -20,6 +23,7 @@ const Register = () => {
         
         
           fetch("http://127.0.0.1:8000/api/users/", requestOptions).then ((res) => res.json()).then(data => console.log(data)).catch(console.log("error"))
+          History.push("/")
     }
     return (
         <div className="register">
