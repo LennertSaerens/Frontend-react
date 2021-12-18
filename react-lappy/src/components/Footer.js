@@ -1,4 +1,5 @@
 import React from "react"
+import "../styles/footer.css"
 
 /**
  * 
@@ -26,14 +27,6 @@ const Footer = () => {
                         <li>Forum</li>
                         <li>Discord</li>
                         <li>Twitter</li>
-                    </ul>
-                </div>
-                <div className="page-links">
-                    <h4>Page Links</h4>
-                    <ul>
-                        <li>Features</li>
-                        <li>Testimonials</li>
-                        <li>News</li>
                     </ul>
                 </div>
             </div>
