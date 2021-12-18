@@ -224,3 +224,9 @@ td {
     display: flex;
     justify-content: center;
 }
+
+.logout-content {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}

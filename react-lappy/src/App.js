@@ -10,6 +10,7 @@ import React, { useState, useEffect } from "react";
 import AddCircuit from "./pages/AddCircuit";
 import AddLaptime from "./pages/AddLaptime";
 import ModifyCircuit from "./pages/ModifyCircuit";
+import Logout from "./pages/Logout";
 
 function App() {
   return (
@@ -41,6 +42,9 @@ function App() {
             </Route>
             <Route path="/modifycircuit">
               <ModifyCircuit />
+            </Route>
+            <Route path="/logout">
+              <Logout />
             </Route>
           </Switch>
         </div>
