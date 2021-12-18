@@ -1,8 +1,9 @@
 import React, { useState } from 'react'
-
+import { useHistory } from "react-router-dom";
 
 const ModifyCircuit = ({ circuit, auth}) => {
     const [name, setName] = useState()
+    let History = useHistory()
     const handleSubmit = (event) => {
         event.preventDefault()
         const header = {
@@ -15,6 +16,7 @@ const ModifyCircuit = ({ circuit, auth}) => {
             body: JSON.stringify({ name: name})
         };
         fetch(`http://127.0.0.1:8000/api/circuits/${circuit.id}/`, requestOptions)
+        History.push("/circuitmap")
     }
     return (
         <div className="modify-circuit">
