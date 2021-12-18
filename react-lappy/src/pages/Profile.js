@@ -12,6 +12,35 @@ const Profile = ({loggedid, auth, getWeather}) => {
 
     const[followers, setFollowers] = useState()
 
+    const [userLaptimes, setUserLaptimes] = useState(
+        [
+            {
+                "id": 1,
+                "time": "01:25:36",
+                "circuit": 3,
+                "user": 30,
+                "weather": "R",
+                "uploaded_on": "2021-11-26T12:30:55.496862Z"
+            },
+            {
+                "id": 2,
+                "time": "01:12:13",
+                "circuit": 3,
+                "user": 30,
+                "weather": "S",
+                "uploaded_on": "2021-11-26T15:18:05.596702Z"
+            },
+            {
+                "id": 3,
+                "time": "05:04:00",
+                "circuit": 3,
+                "user": 23,
+                "weather": "R",
+                "uploaded_on": "2021-11-26T15:35:07.476001Z"
+            }
+        ]
+    )
+
     var id = visitid.id
 
     const [user, setUser] = useState(
@@ -28,6 +57,20 @@ const Profile = ({loggedid, auth, getWeather}) => {
 
     const [fetchedLaps, setFetchedLaps] = useState(false)
 
+    const [fetchedCircuits, setFetchedCircuits] = useState(false)
+
+    const [circuits, setCircuits] = useState([
+        {
+            id: 1,
+            name: "Spa-Francoshamps",
+            coordinates: { lat: 50.436430, lng: 5.970263 }
+        }, {
+            id: 2,
+            name: "Zolder",
+            coordinates: { lat: 50.990359, lng: 5.257508 }
+        }
+    ])
+
     const [currentFollow, setCurrentFollow] = useState()
 
     const [fetchedFollow, setFetchedFollow] = useState(false)
@@ -42,6 +85,18 @@ const Profile = ({loggedid, auth, getWeather}) => {
     if (!fetchedFollowers) fetch(followurl.concat(`?user=${id}`)).then(res => res.json()).then(data => {setFollowers(data.length); setFetchedFollowers(true)})
     
     if (!fetchedLaps) fetch(`http://127.0.0.1:8000/api/laps/?user=${id}`).then(res => res.json()).then(data => {setUserLaptimes(data); setFetchedLaps(true)})
+
+    if (!fetchedCircuits) fetch(`http://127.0.0.1:8000/api/circuits/`).then(res => res.json()).then(data => {setCircuits(data); setFetchedCircuits(true)} )
+
+    const getName = (id) => {
+        if (circuits.filter((circuit) => circuit.id == id).length != 0)
+        {
+            return circuits.filter((circuit) => circuit.id == id)[0].name ;
+
+
+        }
+        else return id
+    }
     
    // if (!fetchedFollow) fetch(followurl.concat(`?user=${id}&by=${loggedid}`)).then(res => res.json()).then(data => {setCurrentFollow(data); setFetchedFollow(true)})
     
@@ -69,15 +124,6 @@ const Profile = ({loggedid, auth, getWeather}) => {
         setCurrentFollow()
     }
 
-    
-
-
-
-    const [userLaptimes, setUserLaptimes] = useState(
-        [
-        ]
-    )
-
     return (
         <>
             <div className="profile-content">
@@ -103,7 +149,7 @@ const Profile = ({loggedid, auth, getWeather}) => {
                             {userLaptimes.map((laptime) => (
                                 <tr>
                                     <td>{laptime.time}</td>
-                                    <td>{laptime.circuit}</td>
+                                    <td>{getName(laptime.circuit)}</td>
                                     <td>{getWeather(laptime.weather)}</td>
                                 </tr>
                             ))}
