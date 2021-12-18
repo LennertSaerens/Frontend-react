@@ -1,10 +1,15 @@
 import React, { useState } from "react"
 
+import { useHistory } from "react-router-dom";
+
 
 
 const Login = ({auth, id, setAuth, setID}) => {
     const [username, setUserName] = useState();
     const [password, setPassword] = useState();
+
+    let History = useHistory()
+
     const handleSubmit = (event) => {
         event.preventDefault();
         const header = {
@@ -20,12 +25,12 @@ const Login = ({auth, id, setAuth, setID}) => {
         console.log("in process")
         fetch("http://127.0.0.1:8000/auth/", requestOptions).then ((res) => res.json()).then(data => {setAuth(data.token); if (data.token) {
             console.log("AUTHORIZED")
-          fetch(usersURL.concat(username)).then ((res) => res.json()).then(data => {setID(data[0].id);})
+          fetch(usersURL.concat(username)).then ((res) => res.json()).then(data => {setID(data[0].id);History.push(`/profile/${data[0].id}`)})
         }}).catch(error => {console.log(error);})
-          
-          console.log(auth)
-          console.log(id)
+        
     }
+
+
     return (
         <div className="login">
             <h1>Login</h1>
