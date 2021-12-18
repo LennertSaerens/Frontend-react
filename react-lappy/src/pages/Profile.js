@@ -45,7 +45,7 @@ const Profile = ({getWeather}) => {
         <>
             <div className="profile-content">
                 <div className="profilepic">
-                    <img src={profilepictest} alt="Profile picture" />
+                    <img src={profilepictest} alt="Avatar uploaded by user" />
                 </div>
                 <div className="user-info">
                     <h2>Personal information</h2>
