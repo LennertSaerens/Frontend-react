@@ -1,5 +1,6 @@
 import React from 'react'
 import { useState } from 'react'
+import { useHistory } from "react-router-dom";
 
 const AddLaptime = ({auth, id}) => {
 
@@ -13,6 +14,8 @@ const AddLaptime = ({auth, id}) => {
     const [weather, setWeather] = useState()
 
     const [fetched, setFetched] = useState(false)
+
+    let History = useHistory();
 
     if (!fetched) fetch("http://127.0.0.1:8000/api/circuits/").then((res) => res.json()).then(data => {setCircuits(data); setFetched(true); console.log(data)})
 
@@ -30,6 +33,7 @@ const AddLaptime = ({auth, id}) => {
             };
         console.log(requestOptions.body)
             fetch("http://127.0.0.1:8000/api/laps/", requestOptions)
+            History.push(`/profile/${id}`)
         }
 
     return (
