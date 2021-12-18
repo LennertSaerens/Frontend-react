@@ -1,4 +1,4 @@
-import React from 'react'
+import React, {useState} from 'react'
 import checkeredFlag from "../images/checkeredFlag.png"
 import { flagStyle } from '../styles/flagstyle'
 
@@ -8,12 +8,14 @@ import { flagStyle } from '../styles/flagstyle'
  *        the state of the Circuitmap page.
  * @returns Shows a flag on the map. This flag is clickable and makes the page display information about the circuit that was clicked.
  */
-const Flag = ({ circuit, setCurrentCircuit, setLaptimes, setEditCircuit }) => {
+const Flag = ({ circuit, setCurrentCircuit, setLaptimes, setEditCircuit}) => {
+    const [fetchedLaptimes, setFetchedLaptimes] = useState(false)
     return (
         <div className="flag" onClick={() => {
             setCurrentCircuit(circuit)
             setEditCircuit(circuit)
-            fetch(`http://127.0.0.1:8000/api/laps/?circuit=${circuit.id}`).then((res) => res.json()).then(data => setLaptimes(data))
+            if (!fetchedLaptimes) 
+               fetch(`http://127.0.0.1:8000/api/laps/?circuit=${circuit.id}`).then((res) => res.json()).then(data => {setLaptimes(data); setFetchedLaptimes(true)});
         }}> 
             <img src={checkeredFlag} alt="Checkered Flag"  style={flagStyle} />
         </div>

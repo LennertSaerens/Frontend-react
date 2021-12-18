@@ -22,9 +22,21 @@ const Circuitmap = ({getWeather, compareLaptimes, setCircuit}) => {
         // }
     ])
 
-    const [fetched, setFetched] = useState(false)
+    const [users, setUsers] = useState([])
 
-    if (!fetched) fetch("http://127.0.0.1:8000/api/circuits/").then((res) => res.json()).then(data => {setCircuits(data); setFetched(true); console.log(data)})
+    const [fetchedCircuits, setFetchedCircuits] = useState(false)
+
+    const getUsername = (userid) => {
+        if (users.filter((user) => user.id == userid).length != 0)
+         return users.filter((user) => user.id == userid)[0].username;
+         else return userid
+    }
+
+    const [fetchedUsers, setFetchedUsers] = useState(false)
+
+    if (!fetchedCircuits) fetch("http://127.0.0.1:8000/api/circuits/").then((res) => res.json()).then(data => {setCircuits(data); setFetchedCircuits(true); console.log(data)})
+
+    if (!fetchedUsers) fetch("http://127.0.0.1:8000/api/users/").then((res) => res.json()).then(data => {setUsers(data); setFetchedUsers(true);})
 
     // Circuit currently selected by the user, used to display circuit profile
     const [currentCircuit, setCurrentCircuit] = useState({
@@ -35,30 +47,6 @@ const Circuitmap = ({getWeather, compareLaptimes, setCircuit}) => {
 
     const [laptimes, setLaptimes] = useState(
         [
-            {
-                "id": 1,
-                "time": "01:25:36",
-                "circuit": 2,
-                "user": 30,
-                "weather": "R",
-                "uploaded_on": "2021-11-26T12:30:55.496862Z"
-            },
-            {
-                "id": 2,
-                "time": "01:12:13",
-                "circuit": 2,
-                "user": 30,
-                "weather": "S",
-                "uploaded_on": "2021-11-26T15:18:05.596702Z"
-            },
-            {
-                "id": 10,
-                "time": "05:04:00",
-                "circuit": 2,
-                "user": 23,
-                "weather": "R",
-                "uploaded_on": "2021-11-26T15:35:07.476001Z"
-            }
         ]
     )
 
@@ -115,7 +103,7 @@ const Circuitmap = ({getWeather, compareLaptimes, setCircuit}) => {
                                 </tr>
                                 {laptimes.sort(compareLaptimes).slice(0, 10).map((laptime) => (
                                     <tr>
-                                        <td>{laptime.user}</td>
+                                        <td>{getUsername(laptime.user)}</td>
                                         <td>{laptime.time}</td>
                                         <td>{getWeather(laptime.weather)}</td>
                                     </tr>
