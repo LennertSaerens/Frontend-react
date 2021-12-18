@@ -1,7 +1,10 @@
 import React, { useState } from 'react'
+import { useHistory } from "react-router-dom";
 
 const AddCircuit = ({auth, id}) => {
     const [name, setName] = useState()
+
+    let History = useHistory();
     const handleSubmit = (event) => {
         event.preventDefault()
         console.log(auth)
@@ -15,6 +18,7 @@ const AddCircuit = ({auth, id}) => {
             body: JSON.stringify({ name: name, created_by: id})
         };
         fetch("http://127.0.0.1:8000/api/circuits/", requestOptions)
+        History.push(`/profile/${id}`)
     }
     
 
