@@ -2,7 +2,7 @@ import React, { useState } from "react"
 import profilepictest from "../images/profilepictest.png"
 import { Link } from "react-router-dom"
 
-const Profile = () => {
+const Profile = ({getWeather}) => {
 
     const [user, setUser] = useState(
         { id: 1, username: "Snelle Lenny", firstname: "Lennert", lastname: "Saerens", joined: "24/09/2021", numfollowers: 69 }
@@ -39,17 +39,6 @@ const Profile = () => {
             }
         ]
     )
-
-    const getWeather = (symbol) => {
-        switch (symbol) {
-            case "R":
-                return "Rainy"
-            case "C":
-                return "Cloudy"
-            case "S":
-                return "Sunny"
-        }
-    }
 
     return (
         <>

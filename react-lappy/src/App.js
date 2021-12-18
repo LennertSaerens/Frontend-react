@@ -13,6 +13,28 @@ import ModifyCircuit from "./pages/ModifyCircuit";
 import Logout from "./pages/Logout";
 
 function App() {
+
+  const compareLaptimes = (l1, l2) => {
+    if (l1.time < l2.time) {
+      return -1
+    }
+    if (l1.time < l2.time) {
+      return 1
+    }
+    return 0
+  }
+
+  const getWeather = (symbol) => {
+    switch (symbol) {
+      case "R":
+        return "Rainy"
+      case "C":
+        return "Cloudy"
+      case "S":
+        return "Sunny"
+    }
+  }
+
   return (
     <BrowserRouter>
       <div className="App">
@@ -28,11 +50,11 @@ function App() {
             <Route path="/register">
               <Register />
             </Route>
-            <Route path="/profile">
-              <Profile />
+            <Route path="/profile" >
+              <Profile getWeather={getWeather}/>
             </Route>
             <Route path="/circuitMap">
-              <Circuitmap />
+              <Circuitmap getWeather={getWeather} compareLaptimes={compareLaptimes}/>
             </Route>
             <Route path="/addcircuit">
               <AddCircuit />

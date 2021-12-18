@@ -4,7 +4,7 @@ import Flag from "../components/Flag"
 import mapStyle from "../styles/GoogleMapStyle.json"
 import { Link } from "react-router-dom"
 
-const Circuitmap = () => {
+const Circuitmap = ({getWeather, compareLaptimes}) => {
 
     // All circuits recieved from the DB. Used for showing them on the map
     const [circuits, setCircuits] = useState([
@@ -61,27 +61,6 @@ const Circuitmap = () => {
         lat: 50.436430,
         lng: 5.970263,
     };
-
-    const getWeather = (symbol) => {
-        switch (symbol) {
-            case "R":
-                return "Rainy"
-            case "C":
-                return "Cloudy"
-            case "S":
-                return "Sunny"
-        }
-    }
-
-    const compareLaptimes = (l1, l2) => {
-        if (l1.time < l2.time) {
-            return -1
-        }
-        if (l1.time < l2.time) {
-            return 1
-        }
-        return 0
-    }
 
     return (
         <div className="circuitMap-page">
