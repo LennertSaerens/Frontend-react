@@ -3,6 +3,7 @@ import GoogleMapReact from "google-map-react"
 import Flag from "../components/Flag"
 import mapStyle from "../styles/GoogleMapStyle.json"
 import { Link } from "react-router-dom"
+import "../styles/circuitmap.css"
 
 const Circuitmap = ({getWeather, compareLaptimes}) => {
 

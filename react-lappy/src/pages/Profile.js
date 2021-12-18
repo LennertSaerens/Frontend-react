@@ -1,6 +1,7 @@
 import React, { useState } from "react"
 import profilepictest from "../images/profilepictest.png"
 import { Link } from "react-router-dom"
+import "../styles/profile.css"
 
 const Profile = ({getWeather}) => {
 
