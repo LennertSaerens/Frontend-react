@@ -55,7 +55,7 @@ const AddLaptime = ({auth, id}) => {
                         type="text"
                         id="laptime"
                         name="laptime"
-                        pattern="[0-5]?[0-9]:[0-5][0-9]:[0-9][0-9]"
+                        pattern="[0-5]?[0-9]:[0-5][0-9]:[0-9][0-9][0-9]"
                         required
                         onChange={e => setTime(e.target.value)}
                     />
