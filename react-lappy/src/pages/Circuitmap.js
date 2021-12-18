@@ -34,7 +34,7 @@ const Circuitmap = ({getWeather, compareLaptimes, setCircuit}) => {
 
     const [fetchedUsers, setFetchedUsers] = useState(false)
 
-    if (!fetchedCircuits) fetch("http://127.0.0.1:8000/api/circuits/").then((res) => res.json()).then(data => {setCircuits(data); setFetchedCircuits(true); console.log(data)})
+    if (!fetchedCircuits) fetch("http://127.0.0.1:8000/api/circuits/").then((res) => res.json()).then(data => {setCircuits(data); setFetchedCircuits(true);})
 
     if (!fetchedUsers) fetch("http://127.0.0.1:8000/api/users/").then((res) => res.json()).then(data => {setUsers(data); setFetchedUsers(true);})
 
@@ -43,6 +43,12 @@ const Circuitmap = ({getWeather, compareLaptimes, setCircuit}) => {
         id: 1,
         name: "None Selected",
         coordinates: { lat: 50.436430, lng: 5.970263 }
+    })
+
+    const [currentCircuitInfo, setCurrentCircuitInfo] = useState({
+        title: "Title",
+        summary: "Summary",
+        link: "https://wikipedia.com"
     })
 
     const [laptimes, setLaptimes] = useState(
@@ -84,6 +90,7 @@ const Circuitmap = ({getWeather, compareLaptimes, setCircuit}) => {
                             setCurrentCircuit={setCurrentCircuit}
                             setLaptimes={setLaptimes}
                             setEditCircuit={setCircuit}
+                            setInfo = {setCurrentCircuitInfo}
                         />
                     ))}
                 </GoogleMapReact>
@@ -92,6 +99,11 @@ const Circuitmap = ({getWeather, compareLaptimes, setCircuit}) => {
             <div className="currentCircuit">
                 <h1>Selected Circuit: {currentCircuit.name}</h1>
                 <div className="current-circuit-content">
+                    <div className="wiki">
+                        <h3>{currentCircuitInfo.title}</h3>
+                        <p>{currentCircuitInfo.summary}</p>
+                        <a href={currentCircuitInfo.link}>More Info</a>
+                    </div>
                     <div className="top-laptimes">
                         <h2>Top 10 laptimes for this circuit:</h2>
                         <div className="table">
