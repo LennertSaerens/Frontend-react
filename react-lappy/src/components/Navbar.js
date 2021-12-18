@@ -1,31 +1,30 @@
-import React from "react"
+import React, { useState } from "react"
 import { Link } from "react-router-dom"
 import Profile from "../pages/Profile"
 import Searchbar from "./Searchbar"
+import "../styles/navigation.css"
 
+/**
+ * 
+ * @returns Code for the navbar at the top of the page. 
+ */
 const Navbar = ({id}) => {
-
-    var option1;
-
-    var option2;
-
-    if (id != null){ //logged in
-    option1 = <Link to= {`/profile/${id}`}>Profile</Link>
-    }
-    else option1 = <Link to="/login">Login</Link>
     
     return (
         <nav className="navigation">
             <h1>Lappy.gp</h1>
             <div className="links">
                 <Link to="/">Home</Link>
-                {option1}
-                <Link to="/register">Register</Link>
                 <Link to="/circuitMap">Circuit Map</Link>
+                {(id != null)
+                    ? <Link to={`/profile/${id}`}>Profile</Link>
+                    : <Link to="/login">Login</Link>
+                }
+                <Link to={(id != null) ? "/logout" : "/register"}>{(id != null) ? "Logout" : "Register"}</Link>
             </div>
-            <div className="search">
+            {/* <div className="search">
                 <Searchbar />
-            </div>
+            </div> */}
         </nav>
     )
 }

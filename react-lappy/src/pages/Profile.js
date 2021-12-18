@@ -2,8 +2,9 @@ import React, { useEffect, useState } from "react"
 import { Link } from "react-router-dom"
 import profilepictest from "../images/profilepictest.png"
 import { useParams } from "react-router-dom";
+import "../styles/profile.css"
 
-const Profile = ({loggedid, auth}) => {
+const Profile = ({loggedid, auth, getWeather}) => {
 
     const visitid = useParams()
 
@@ -77,23 +78,11 @@ const Profile = ({loggedid, auth}) => {
         ]
     )
 
-    
-    const getWeather = (symbol) => {
-        switch (symbol) {
-            case "R":
-                return "Rainy"
-            case "C":
-                return "Cloudy"
-            case "S":
-                return "Sunny"
-        }
-    }
-
     return (
         <>
             <div className="profile-content">
                 <div className="profilepic">
-                    <img src={profilePic} alt="Profile picture" />
+                    <img src={profilePic} alt="Avatar uploaded by user" />
                 </div>
                 <div className="user-info">
                     <h2>Personal information</h2>

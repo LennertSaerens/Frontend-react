@@ -1,0 +1,27 @@
+.profile-content {
+    padding: 20px;
+    display: flex;
+    width: 80%;
+    justify-content: space-around;
+    align-items: center;
+    flex-wrap: wrap;
+    margin: 0 auto;
+    font-size: large;
+}
+
+.profile-content th{
+    color: rgb(247, 99, 73);
+}
+
+.profile-content h2{
+    display: flex;
+    text-align: center;
+    justify-content: center;
+}
+
+.profilepic img {
+    border-radius: 50%;
+    padding-right: 40px;
+    max-width: 80%;
+    max-height: 80%;
+}

@@ -10,12 +10,36 @@ import React, { useState, useEffect } from "react";
 import AddCircuit from "./pages/AddCircuit";
 import AddLaptime from "./pages/AddLaptime";
 import ModifyCircuit from "./pages/ModifyCircuit";
+import Logout from "./pages/Logout";
 
 
 function App() {
   const [auth, setAuth] = useState(null)
   const [id, setID]= useState(null);
   const[circuit, setCircuit] = useState()
+
+  const compareLaptimes = (l1, l2) => {
+    if (l1.time < l2.time) {
+      return -1
+    }
+    if (l1.time < l2.time) {
+      return 1
+    }
+    return 0
+  }
+
+  const getWeather = (symbol) => {
+    switch (symbol) {
+      case "R":
+        return "Rainy"
+      case "C":
+        return "Cloudy"
+      case "S":
+        return "Sunny"
+      default: throw console.error("Unexpected argument");
+    }
+  }
+
   return (
     <BrowserRouter>
       <div className="App">
@@ -32,10 +56,10 @@ function App() {
               <Register auth={auth}/>
             </Route>
             <Route path="/profile/:id">
-              <Profile loggedid={id} auth={auth}/>
+              <Profile loggedid={id} auth={auth} getWeather={getWeather}/>
             </Route>
             <Route path="/circuitMap">
-              <Circuitmap setCircuit = {setCircuit}/>
+              <Circuitmap getWeather={getWeather} compareLaptimes={compareLaptimes} setCircuit = {setCircuit}/>
             </Route>
             <Route path="/addcircuit">
               <AddCircuit auth={auth} id={id}/>
@@ -45,6 +69,9 @@ function App() {
             </Route>
             <Route path="/modifycircuit">
               <ModifyCircuit circuit={circuit} auth={auth}/>
+            </Route>
+            <Route path="/logout">
+              <Logout />
             </Route>
           </Switch>
         </div>

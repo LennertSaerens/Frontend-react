@@ -3,8 +3,9 @@ import GoogleMapReact from "google-map-react"
 import Flag from "../components/Flag"
 import mapStyle from "../styles/GoogleMapStyle.json"
 import { Link } from "react-router-dom"
+import "../styles/circuitmap.css"
 
-const Circuitmap = ({setCircuit}) => {
+const Circuitmap = ({getWeather, compareLaptimes, setCircuit}) => {
 
     // All circuits recieved from the DB. Used for showing them on the map
     const [circuits, setCircuits] = useState([
@@ -34,6 +35,30 @@ const Circuitmap = ({setCircuit}) => {
 
     const [laptimes, setLaptimes] = useState(
         [
+            {
+                "id": 1,
+                "time": "01:25:36",
+                "circuit": 2,
+                "user": 30,
+                "weather": "R",
+                "uploaded_on": "2021-11-26T12:30:55.496862Z"
+            },
+            {
+                "id": 2,
+                "time": "01:12:13",
+                "circuit": 2,
+                "user": 30,
+                "weather": "S",
+                "uploaded_on": "2021-11-26T15:18:05.596702Z"
+            },
+            {
+                "id": 10,
+                "time": "05:04:00",
+                "circuit": 2,
+                "user": 23,
+                "weather": "R",
+                "uploaded_on": "2021-11-26T15:35:07.476001Z"
+            }
         ]
     )
 
@@ -44,27 +69,6 @@ const Circuitmap = ({setCircuit}) => {
         lat: 50.436430,
         lng: 5.970263,
     };
-
-    const getWeather = (symbol) => {
-        switch (symbol) {
-            case "R":
-                return "Rainy"
-            case "C":
-                return "Cloudy"
-            case "S":
-                return "Sunny"
-        }
-    }
-
-    const compareLaptimes = (l1, l2) => {
-        if (l1.time < l2.time) {
-            return -1
-        }
-        if (l1.time < l2.time) {
-            return 1
-        }
-        return 0
-    }
 
     return (
         <div className="circuitMap-page">

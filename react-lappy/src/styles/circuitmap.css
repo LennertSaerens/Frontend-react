@@ -1,0 +1,18 @@
+.google-map {
+    margin-bottom: 20px;
+    margin-top: 20px;
+}
+
+.currentCircuit h1{
+    padding: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-top: 1px solid #a09a9a;
+}
+
+.current-circuit-content {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
