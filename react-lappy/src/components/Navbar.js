@@ -23,9 +23,9 @@ const Navbar = () => {
                 }
                 <Link to={loggedIn ? "/logout" : "/register"}>{loggedIn ? "Logout" : "Register"}</Link>
             </div>
-            <div className="search">
+            {/* <div className="search">
                 <Searchbar />
-            </div>
+            </div> */}
         </nav>
     )
 }
