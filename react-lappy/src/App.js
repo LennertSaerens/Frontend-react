@@ -32,6 +32,7 @@ function App() {
         return "Cloudy"
       case "S":
         return "Sunny"
+      default: throw console.error("Unexpected argument");
     }
   }
 
