@@ -12,7 +12,11 @@ import AddLaptime from "./pages/AddLaptime";
 import ModifyCircuit from "./pages/ModifyCircuit";
 import Logout from "./pages/Logout";
 
+
 function App() {
+  const [auth, setAuth] = useState(null)
+  const [id, setID]= useState(null);
+  const[circuit, setCircuit] = useState()
 
   const compareLaptimes = (l1, l2) => {
     if (l1.time < l2.time) {
@@ -39,32 +43,32 @@ function App() {
   return (
     <BrowserRouter>
       <div className="App">
-        <Navbar />
+        <Navbar id={id}/>
         <div className="content">
           <Switch>
             <Route exact path="/">
               <Home />
             </Route>
             <Route path="/login">
-              <Login />
+              <Login auth={auth} id={id} setAuth={setAuth} setID={setID}/>
             </Route>
             <Route path="/register">
-              <Register />
+              <Register auth={auth}/>
             </Route>
-            <Route path="/profile" >
-              <Profile getWeather={getWeather}/>
+            <Route path="/profile/:id">
+              <Profile loggedid={id} auth={auth} getWeather={getWeather}/>
             </Route>
             <Route path="/circuitMap">
-              <Circuitmap getWeather={getWeather} compareLaptimes={compareLaptimes}/>
+              <Circuitmap getWeather={getWeather} compareLaptimes={compareLaptimes} setCircuit = {setCircuit}/>
             </Route>
             <Route path="/addcircuit">
-              <AddCircuit />
+              <AddCircuit auth={auth} id={id}/>
             </Route>
             <Route path="/addlaptime">
-              <AddLaptime />
+              <AddLaptime auth={auth} id={id}/>
             </Route>
             <Route path="/modifycircuit">
-              <ModifyCircuit />
+              <ModifyCircuit circuit={circuit} auth={auth}/>
             </Route>
             <Route path="/logout">
               <Logout />

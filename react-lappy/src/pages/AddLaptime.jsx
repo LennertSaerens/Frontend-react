@@ -1,29 +1,51 @@
 import React from 'react'
 import { useState } from 'react'
+import { useHistory } from "react-router-dom";
 
-const AddLaptime = () => {
+const AddLaptime = ({auth, id}) => {
 
     const [circuits, setCircuits] = useState([
-        {
-            id: 1,
-            name: "Spa-Francoshamps",
-            coordinates: { lat: 50.436430, lng: 5.970263 }
-        }, {
-            id: 2,
-            name: "Zolder",
-            coordinates: { lat: 50.990359, lng: 5.257508 }
-        }
     ])
+
+    const [currentCircuit, setCurrentCircuit] = useState()
+
+    const [time, setTime] = useState()
+
+    const [weather, setWeather] = useState()
+
+    const [fetched, setFetched] = useState(false)
+
+    let History = useHistory();
+
+    if (!fetched) fetch("http://127.0.0.1:8000/api/circuits/").then((res) => res.json()).then(data => {setCircuits(data); setFetched(true); console.log(data)})
+
+    const handleSubmit = (event) => {
+        event.preventDefault()
+        // fetch(`http://127.0.0.1:8000/api/circuits/?name=${currentCircuit}`).then ((res) => res.json()).then(data => {setCircuitID(data[0].id); console.log(data)})
+        const header = {
+                'Content-Type': 'application/json',
+                'Authorization': `Token ${auth}`
+              };
+        const requestOptions = {
+            method: 'POST',
+            headers: header,
+            body: JSON.stringify({user: id, circuit: currentCircuit, time: time, weather: weather})
+            };
+        console.log(requestOptions.body)
+            fetch("http://127.0.0.1:8000/api/laps/", requestOptions)
+            History.push(`/profile/${id}`)
+        }
 
     return (
         <div className="add-laptime">
             <h1>Add Laptime</h1>
-            <form action="#" method="post">
+            <form onSubmit={handleSubmit} method="post">
                 <p>
                     <label for="circuit">Circuit:</label>
-                    <select name="circuit" id="circuit">
+                    <select name="circuit" id="circuit" onChange={e => setCurrentCircuit(e.target.value)}>
+                        <option selected value={""}></option>
                         {circuits.map((circuit) => (
-                            <option value={circuit.name}>{circuit.name}</option>
+                            <option value={circuit.id}>{circuit.name}</option>
                         ))}
                     </select>
                 </p>
@@ -35,11 +57,13 @@ const AddLaptime = () => {
                         name="laptime"
                         pattern="[0-5]?[0-9]:[0-5][0-9]:[0-9][0-9][0-9]"
                         required
+                        onChange={e => setTime(e.target.value)}
                     />
                 </p>
                 <p>
                     <label htmlFor="condition">Condition:</label>
-                    <select name="condition" id="condition">
+                    <select name="condition" id="condition" onChange={e => setWeather(e.target.value)}>
+                    <option selected value={""}></option>
                         <option value="S">Sunny</option>
                         <option value="C">Cloudy</option>
                         <option value="R">Rainy</option>

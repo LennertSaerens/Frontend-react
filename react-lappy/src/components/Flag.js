@@ -1,4 +1,4 @@
-import React from 'react'
+import React, {useState} from 'react'
 import checkeredFlag from "../images/checkeredFlag.png"
 import { flagStyle } from '../styles/flagstyle'
 
@@ -8,11 +8,26 @@ import { flagStyle } from '../styles/flagstyle'
  *        the state of the Circuitmap page.
  * @returns Shows a flag on the map. This flag is clickable and makes the page display information about the circuit that was clicked.
  */
-const Flag = ({ circuit, setCurrentCircuit, setLaptimes }) => {
+const Flag = ({ circuit, setCurrentCircuit, setLaptimes, setEditCircuit, setInfo}) => {
+    const [fetchedLaptimes, setFetchedLaptimes] = useState(false)
+    const [fetchedInfo, setFetchedInfo] = useState(false)
     return (
         <div className="flag" onClick={() => {
             setCurrentCircuit(circuit)
-            // TODO: setLaptimes(circuit)
+            setEditCircuit(circuit)
+            if (!fetchedLaptimes) 
+               fetch(`http://127.0.0.1:8000/api/laps/?circuit=${circuit.id}`).then((res) => res.json()).then(data => {setLaptimes(data); setFetchedLaptimes(true)});
+               const header = {
+                'Content-Type': 'application/json',
+              };
+              const requestOptions = {
+                method: 'POST',
+                headers: header,
+                body: JSON.stringify({circuit_name: circuit.name})
+            };
+            if (!fetchedInfo)
+            console.log(requestOptions.body)
+                fetch("http://127.0.0.1:8000/api/wiki", requestOptions).then(res => res.json()).then(data => {setInfo(data); setFetchedInfo(true); console.log(data)} )
         }}> 
             <img src={checkeredFlag} alt="Checkered Flag"  style={flagStyle} />
         </div>
